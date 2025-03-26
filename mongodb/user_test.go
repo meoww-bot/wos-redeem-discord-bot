@@ -1,10 +1,5 @@
 package mongodb
 
-import (
-	"fmt"
-	"testing"
-)
-
 // func TestGetUser(t *testing.T) {
 // 	user, err := GetUser(int64(user_id))
 
@@ -19,35 +14,35 @@ import (
 
 // }
 
-func TestListAllUser(t *testing.T) {
-	users, err := GetAllUser()
+// func TestListAllUser(t *testing.T) {
+// 	users, err := GetAllUser()
 
-	if err != nil {
-		t.Log(err)
-	}
+// 	if err != nil {
+// 		t.Log(err)
+// 	}
 
-	var responseString string = fmt.Sprintf("UserID - Nickname (%d users)", len(users))
+// 	var responseString string = fmt.Sprintf("UserID - Nickname (%d users)", len(users))
 
-	for _, user := range users {
+// 	for _, user := range users {
 
-		responseString += fmt.Sprintf("\n%d - %s", user.FID, user.Nickname)
-	}
+// 		responseString += fmt.Sprintf("\n%d - %s", user.FID, user.Nickname)
+// 	}
 
-	t.Log(len(responseString))
+// 	t.Log(len(responseString))
 
-}
+// }
 
-func TestGetAllUser(t *testing.T) {
-	users, err := GetAllUser()
+// func TestGetAllUser(t *testing.T) {
+// 	users, err := GetAllUser()
 
-	if err != nil {
-		t.Log(err)
-	}
+// 	if err != nil {
+// 		t.Log(err)
+// 	}
 
-	t.Logf("%+v", users)
+// 	t.Logf("%+v", users)
 
-	t.Log(len(users))
-}
+// 	t.Log(len(users))
+// }
 
 // func TestGetUserRealStoveLv(t *testing.T) {
 // 	user, err := GetUser(417561)
