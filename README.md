@@ -25,7 +25,7 @@ Whiteout Survival bot auto redeem gift code in Discord
 
 建议使用 ubuntu 系统的 Linux，新手友好，下文教程按 ubuntu 进行
 
-1. supervisor 建议安装用于进程管理，也可以用 systemd
+1. supervisor 建议安装用于进程管理，也可以用系统自带的 systemd
 ```
 apt install supervisor -y
 ```
@@ -46,20 +46,20 @@ apt install supervisor -y
 
 1. 个人 PC 上下载 mongodb compass
 下载链接 https://www.mongodb.com/try/download/compass
-选择你的系统下载安装
-
+选择你的系统下载安装  
+  
 初始化时不要放超过100个id，具体看用户的昵称长度，不要让长度超过2000个字符，否则会报错，处理起来比较麻烦，这里不想改了，有点头大
-
-2. 将想要兑换的id 放到文件中，比如 ids.csv
-表头 fid
-内容用户id，一行一个
+  
+2. 将想要兑换的id 放到文件中，比如 ids.csv  
+表头 fid  
+内容用户id，一行一个  
 
 3. 打开 mongodb compass，点击"+"，在 URI 框粘贴上面得到的数据库连接地址连接
 4. 点击 "create database"  
-Database Name 输入 wos
-Collection Name 输入 user
-5. 导入用户ID
-选择 `user` 表，点击 `ADD DATA` - `Import JSON or CSV file`，将 `ids.csv` 放入，导入即可
+Database Name 输入 wos  
+Collection Name 输入 user  
+5. 导入用户 ID  
+选择 `user` 表，点击 `ADD DATA` - `Import JSON or CSV file`，将 `ids.csv` 放入，导入即可  
 
 ### 部署 bot
 
@@ -77,7 +77,7 @@ tar zxvf wos-redeem-discord-bot_1_linux_amd64.tar.gz -C wos-redeem-discord-bot
 ```
 程序已经解压到 /root/wos-redeem-discord-bot/wos-redeem-discord-bot
 
-2. 配置 supervisor
+2. 配置 supervisor 进程管理（作用是在进程失败退出的时候自动启动程序，日志文件统一存放/自动分片）
 ```
 wget https://raw.githubusercontent.com/meoww-bot/wos-redeem-discord-bot/refs/heads/master/scripts/wos-redeem-discord-bot.conf
 ```
