@@ -1,0 +1,53 @@
+stages:
+  - install_deps
+  - coveragetest
+  - build
+  - deploy
+
+install_deps:
+  stage: install_deps
+  only:
+    - main
+  tags:
+    - bot-server
+  script:
+    - go mod tidy
+
+
+test:
+  stage: coveragetest
+  tags:
+    - bot-server
+  script:
+    - go test  ./... -v -covermode=count -coverprofile coverage.txt
+    - go tool cover -func=coverage.txt
+    - go get github.com/boumenot/gocover-cobertura
+    - go run github.com/boumenot/gocover-cobertura < coverage.txt > coverage.xml
+  # https://stackoverflow.com/questions/61246686/go-coverage-over-multiple-package-and-gitlab-coverage-badge
+  coverage: '/\(statements\)(?:\s+)?(\d+(?:\.\d+)?%)/'
+  artifacts:
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: coverage.xml
+    expire_in: 2 days
+
+build:
+  stage: build
+  tags:
+    - bot-server
+  script:
+    - mkdir -p wos-redeem-discord-bot
+    - go build -o wos-redeem-discord-bot ./...
+  artifacts:
+    paths:
+      - wos-redeem-discord-bot
+    expire_in: 2 days
+
+deploy:
+  stage: deploy
+  tags:
+    - bot-server
+  script: 
+    - sudo bash scripts/deploy.sh
+  environment: production
