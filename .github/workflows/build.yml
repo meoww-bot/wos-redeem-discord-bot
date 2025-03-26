@@ -43,6 +43,7 @@ jobs:
           args: build --snapshot --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GOOS: linux,darwin
 
       - name: Upload Artifact - Linux amd64
         uses: actions/upload-artifact@v4
