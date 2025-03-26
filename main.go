@@ -22,6 +22,7 @@ import (
 
 var IsRedeeming = false
 var Cancel = false
+var StartTime = time.Now()
 
 func main() {
 

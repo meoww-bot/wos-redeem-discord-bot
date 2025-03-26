@@ -10,7 +10,6 @@ import (
 	"wos-redeem-discord-bot/mongodb"
 
 	"github.com/bwmarrin/discordgo"
-	"github.com/haraldrudell/parl/mains"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -290,7 +289,7 @@ func handleIDCommand(s *discordgo.Session, i *discordgo.InteractionCreate) {
 func handleUpTimeCommand(s *discordgo.Session, i *discordgo.InteractionCreate) {
 
 	Now := time.Now()
-	uptime := Now.Sub(mains.ProcessStartTime())
+	uptime := Now.Sub(StartTime)
 	text := fmt.Sprintf("uptime: %s s", strings.Split(uptime.String(), ".")[0]) // 1585h39m2 s
 
 	s.InteractionRespond(i.Interaction, &discordgo.InteractionResponse{
